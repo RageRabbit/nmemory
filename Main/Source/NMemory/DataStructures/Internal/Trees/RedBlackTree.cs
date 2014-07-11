@@ -542,12 +542,9 @@ namespace NMemory.DataStructures.Internal.Trees
             int capacity = (int)Math.Truncate(2 * Math.Log(this.count + 1) / 0.301);
             Stack<RedBlackTreeNode<TKey, TValue>> stack = new Stack<RedBlackTreeNode<TKey, TValue>>(capacity);
 
-            bool done = false;
             RedBlackTreeNode<TKey, TValue> current = this.root;
-            int max = 0;
-            while (!done)
+            while (true)
             {
-                max = Math.Max(max, stack.Count);
                 if (current != null)
                 {
                     stack.Push(current);
@@ -564,7 +561,7 @@ namespace NMemory.DataStructures.Internal.Trees
                     }
                     else
                     {
-                        done = true;
+                        break;
                     }
                 }
             }

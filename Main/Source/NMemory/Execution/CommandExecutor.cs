@@ -62,8 +62,6 @@ namespace NMemory.Execution
             ITable[] tablesToLock,
             bool cloneEntities)
         {
-            ITable[] tables = TableLocator.FindAffectedTables(context.Database, plan);
-
             EntityPropertyCloner<T> cloner = null;
             if (cloneEntities && this.database.Tables.IsEntityType<T>())
             {

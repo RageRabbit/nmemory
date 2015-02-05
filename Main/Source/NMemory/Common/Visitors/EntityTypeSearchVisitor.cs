@@ -47,18 +47,21 @@ namespace NMemory.Common.Visitors
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            ITable table = node.Value as ITable;
-
-            if (table != null)
+            if (node.Value != null)
             {
-                this.entityTypes.Add(table.EntityType);
-            }
+                ITable table = node.Value as ITable;
 
-            IIndex index = node.Value as IIndex;
+                if (table != null)
+                {
+                    this.entityTypes.Add(table.EntityType);
+                }
 
-            if (index != null)
-            {
-                this.entityTypes.Add(index.Table.EntityType);
+                IIndex index = node.Value as IIndex;
+
+                if (index != null)
+                {
+                    this.entityTypes.Add(index.Table.EntityType);
+                }
             }
 
             return base.VisitConstant(node);
